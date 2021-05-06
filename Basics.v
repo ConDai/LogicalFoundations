@@ -249,7 +249,7 @@ Proof. simpl. reflexivity.  Qed.
 Example test_orb2:  (orb false false) = false.
 Proof. simpl. reflexivity.  Qed.
 Example test_orb3:  (orb false true)  = true.
-Proof. simpl. reflexivity.Qed. 
+Proof. simpl. reflexivity. Qed. 
 Example test_orb4:  (orb true  true)  = true.
 Proof. simpl. reflexivity.  Qed.
 
