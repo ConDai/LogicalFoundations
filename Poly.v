@@ -1184,31 +1184,33 @@ Proof. reflexivity. Qed.
 Definition plus (n m : cnat) : cnat := fun (X: Type) (f: X -> X) (x: X) => n X f (m X f x).
 
 Example plus_1 : plus zero one = one.
-Proof. .
+Proof. reflexivity. Qed.
 
 Example plus_2 : plus two three = plus three two.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 
 Example plus_3 :
   plus (plus two two) three = plus one (plus three three).
-Proof. (* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 
 (** [] *)
 
 (** **** Exercise: 2 stars, advanced (church_mult)  *)
 
 (** Multiplication: *)
-Definition mult (n m : cnat) : cnat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+Definition mult (n m : cnat) : cnat 
+  :=  fun (X: Type) (f:X -> X) (x:X)  
+  =>  (m X (n X f) x).
+ 
 
 Example mult_1 : mult one one = one.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 
 Example mult_2 : mult zero (plus three three) = zero.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 
 Example mult_3 : mult two three = plus three three.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. reflexivity. Qed.
 
 (** [] *)
 
@@ -1221,20 +1223,39 @@ Proof. (* FILL IN HERE *) Admitted.
     a "Universe inconsistency" error, try iterating over a different
     type.  Iterating over [cnat] itself is usually problematic.) *)
 
-Definition exp (n m : cnat) : cnat
-  (* REPLACE THIS LINE WITH ":= _your_definition_ ." *). Admitted.
+(*
+(* Need to get back to this *)
+(* Definition cnat := forall X : Type, (X -> X) -> X -> X. *)
+Definition exp (n m : cnat) : cnat 
+  := fun (X:Type) (f: X -> X) (x:X) 
+  => m X (fun (x: X) => (mult n (fun (X':Type) (f':X' -> X') (x':X') => f' x')) X f x) x.
+
+(*
+
+exp three two = exp (\X -> \f -> \x -> f.f.f x)  (\X -> \f ->  \x -> f.f x) 
+
+(\X -> \f ->  \x -> f.f x)  X (fun (x: X) => (mult (\X -> \f -> \x -> f.f.f x)  (fun (X':Type) (f':X' -> X') (x':X') => f' x')) X f x) x
+(\f -> \x -> f.f x) 
+*)
+
+Compute exp two two.  
+Compute plus two two.
+
+Compute exp two three.
+Compute exp three three.
+Compute exp three zero.
 
 Example exp_1 : exp two two = plus two two.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. simpl. reflexivity. Qed.
 
 Example exp_2 : exp three zero = one.
-Proof. (* FILL IN HERE *) Admitted.
+Proof. reflexivity.
 
 Example exp_3 : exp three two = plus (mult two (mult two two)) one.
 Proof. (* FILL IN HERE *) Admitted.
 
 (** [] *)
-
+*)
 End Church.
 
 End Exercises.
