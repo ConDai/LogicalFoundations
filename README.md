@@ -13,3 +13,5 @@
 * MStar''
 * pumping
 * Additional Exercises
+### ProofObjects.v
+* leibniz_equality__equality
