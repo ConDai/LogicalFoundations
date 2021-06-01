@@ -1316,6 +1316,7 @@ Definition manual_grade_for_split_combine : option (nat*string) := None.
 
 (** **** Exercise: 3 stars, advanced (filter_exercise)  
 
+(*
     This one is a bit challenging.  Pay attention to the form of your
     induction hypothesis. *)
 
@@ -1396,7 +1397,7 @@ Theorem existsb_existsb' : forall (X : Type) (test : X -> bool) (l : list X),
 Proof. (* FILL IN HERE *) Admitted.
 
 (** [] *)
-
+*)
 
 
 (* Wed Jan 9 12:02:44 EST 2019 *)
