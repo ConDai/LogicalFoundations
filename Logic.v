@@ -644,11 +644,10 @@ Proof.
   - intros [[HP1 | HQ] [ HP2 | HR]].
     { left. apply HP1. }
     { left. apply HP1. }
-    { left. apply HP1. }
     { left. apply HP2. }
     { right. split. 
       { apply HQ. }
-      { apply HR. }
+      { apply HR. }    
     }
 Qed.
 (** [] *)
