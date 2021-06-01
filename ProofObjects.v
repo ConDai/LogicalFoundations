@@ -391,7 +391,6 @@ Definition and_comm' P Q : P /\ Q <-> Q /\ P :=
 
     Construct a proof object demonstrating the following proposition. *)
 
-(* P Q R = Types? *) 
 Definition conj_fact : forall P Q R, P /\ Q -> Q /\ R -> P /\ R:= 
   fun P => fun Q => fun R =>
   fun PQ => fun QR =>
@@ -546,6 +545,7 @@ Notation "x == y" := (eq x y)
 
 Lemma four: 2 + 2 == 1 + 3.
 Proof.
+  simpl.
   apply eq_refl.
 Qed.
 
@@ -590,7 +590,11 @@ Lemma leibniz_equality__equality : forall (X : Type) (x y: X),
   (forall P:X->Prop, P x -> P y) -> x == y.
 Proof.
   intros X x y H.
-  Admitted.
+  specialize (H (fun z => x == z)) .
+  simpl in H.
+  apply H.
+  apply eq_refl.
+Qed.
 (** [] *)
 
 End MyEquality.
